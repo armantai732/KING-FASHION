@@ -6,7 +6,7 @@ import ProductSection from "../components/ProductSection";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { products } from "../data/products";
-import { getproductlimit, TrackVisit } from "../data/api";
+import { getproductlimit } from "../data/api";
 import { toast } from "react-toastify";
 
 export default function Home({added, setOpen, setSelectedProduct, setSelectedImage, getImageUrl , handleAddToCart}) {
@@ -41,7 +41,7 @@ export default function Home({added, setOpen, setSelectedProduct, setSelectedIma
 
   useEffect(() => {
     fecthData()
-    TrackVisit()
+    
   }, [])
 
   return (
