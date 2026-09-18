@@ -12,7 +12,7 @@ app.use(
     cors({
         origin: [
             "http://localhost:5173",
-            "https://king-fashion-one.vercel.app",
+            "https://king-fashion-9bpz.vercel.app/",
         ],
         credentials: true,
         methods: ["GET", "POST", "PUT", "DELETE"],
