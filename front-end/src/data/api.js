@@ -1,5 +1,4 @@
 const API_URL = import.meta.env.VITE_API_URL
-const BASE_URL = `${API_URL}/api`
 
 const authHeaders = () => {
     const token = localStorage.getItem("token");
@@ -8,7 +7,7 @@ const authHeaders = () => {
 
 export const RegisterData = async (form) => {
     try {
-        const res = await fetch(`${BASE_URL}/register`, {
+        const res = await fetch(`${API_URL}/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -33,7 +32,7 @@ export const RegisterData = async (form) => {
 
 export const LoginData = async (form) => {
     try {
-        const res = await fetch(`${BASE_URL}/login`, {
+        const res = await fetch(`${API_URL}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': "application/json"
@@ -53,7 +52,7 @@ export const LoginData = async (form) => {
 
 export const LogoutUser = async () => {
     try {
-        const req = await fetch(`${BASE_URL}/logout`, {
+        const req = await fetch(`${API_URL}/logout`, {
             method: 'POST',
             credentials: "include"
         })
@@ -67,7 +66,7 @@ export const LogoutUser = async () => {
 
 export const VerifyOtp = async (form) => {
     try {
-        const req = await fetch(`${BASE_URL}/verifyemail`, {
+        const req = await fetch(`${API_URL}/verifyemail`, {
             method: 'POST',
             credentials: "include",
             body: JSON.stringify(form),
@@ -85,7 +84,7 @@ export const VerifyOtp = async (form) => {
 
 export const ResendOtp = async ({ email }) => {
     try {
-        const res = await fetch(`${BASE_URL}/resend-otp`, {
+        const res = await fetch(`${API_URL}/resend-otp`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -104,7 +103,7 @@ export const ResendOtp = async ({ email }) => {
 
 export const RequestPasswordReset = async ({ email }) => {
     try {
-        const res = await fetch(`${BASE_URL}/forgot-password/request`, {
+        const res = await fetch(`${API_URL}/forgot-password/request`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -120,7 +119,7 @@ export const RequestPasswordReset = async ({ email }) => {
 
 export const ResetPassword = async ({ email, otp, newPassword }) => {
     try {
-        const res = await fetch(`${BASE_URL}/forgot-password/reset`, {
+        const res = await fetch(`${API_URL}/forgot-password/reset`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -138,7 +137,7 @@ export const ResetPassword = async ({ email, otp, newPassword }) => {
 
 export const ToggleWishlist = async (productId) => {
     try {
-        const res = await fetch(`${BASE_URL}/wishlist/toggle`, {
+        const res = await fetch(`${API_URL}/wishlist/toggle`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -156,7 +155,7 @@ export const ToggleWishlist = async (productId) => {
 
 export const GetWishlist = async () => {
     try {
-        const res = await fetch(`${BASE_URL}/wishlist`, {
+        const res = await fetch(`${API_URL}/wishlist`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -174,7 +173,7 @@ export const GetWishlist = async () => {
 // product
 
 export const addProduct = async (formData) => {
-    const res = await fetch(`${BASE_URL}/product/add`, {
+    const res = await fetch(`${API_URL}/product/add`, {
         method: "POST",
         body: formData,
     });
@@ -184,7 +183,7 @@ export const addProduct = async (formData) => {
 
 export const getproduct = async (category) => {
     try {
-        const res = await fetch(`${BASE_URL}/product/getproduct/${category}`)
+        const res = await fetch(`${API_URL}/product/getproduct/${category}`)
         return await res.json()
     } catch (error) {
         console.log(error.message)
@@ -193,7 +192,7 @@ export const getproduct = async (category) => {
 
 export const getproductlimit = async (category) => {
     try {
-        const res = await fetch(`${BASE_URL}/product/limit/${category}`)
+        const res = await fetch(`${API_URL}/product/limit/${category}`)
         return await res.json()
     } catch (error) {
         console.log(error.message)
@@ -202,7 +201,7 @@ export const getproductlimit = async (category) => {
 
 export const getAllProduct = async (data) => {
     try {
-        const res = await fetch(`${BASE_URL}/product/getall`, {
+        const res = await fetch(`${API_URL}/product/getall`, {
             method: "get"
         })
         return await res.json(data)
@@ -213,12 +212,12 @@ export const getAllProduct = async (data) => {
 
 
 export const getSingleProduct = async (id) => {
-    const res = await fetch(`${BASE_URL}/product/${id}`);
+    const res = await fetch(`${API_URL}/product/${id}`);
     return await res.json();
 };
 
 export const updateProduct = async (id, form) => {
-    const res = await fetch(`${BASE_URL}/product/update/${id}`, {
+    const res = await fetch(`${API_URL}/product/update/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -231,7 +230,7 @@ export const updateProduct = async (id, form) => {
 
 
 export const deleteProduct = async (id) => {
-    const res = await fetch(`${BASE_URL}/product/delete/${id}`, {
+    const res = await fetch(`${API_URL}/product/delete/${id}`, {
         method: "DELETE",
     });
 
@@ -241,7 +240,7 @@ export const deleteProduct = async (id) => {
 
 
 export const updateProductStatus = async (id, status) => {
-    const res = await fetch(`${BASE_URL}/product/status/${id}`, {
+    const res = await fetch(`${API_URL}/product/status/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -258,7 +257,7 @@ export const updateProductStatus = async (id, status) => {
 
 export const AddCart = async (data) => {
     try {
-        const res = await fetch(`${BASE_URL}/cart/add`, {
+        const res = await fetch(`${API_URL}/cart/add`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -276,7 +275,7 @@ export const AddCart = async (data) => {
 
 export const GetCart = async () => {
     try {
-        const res = await fetch(`${BASE_URL}/cart`, {
+        const res = await fetch(`${API_URL}/cart`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -292,7 +291,7 @@ export const GetCart = async () => {
 
 export const UpdateCartItem = async (id, quantity) => {
     try {
-        const res = await fetch(`${BASE_URL}/cart/${id}`, {
+        const res = await fetch(`${API_URL}/cart/${id}`, {
             method: "PUT",
             credentials: "include",
             headers: {
@@ -310,7 +309,7 @@ export const UpdateCartItem = async (id, quantity) => {
 
 export const DeleteCartItem = async (id) => {
     try {
-        const res = await fetch(`${BASE_URL}/cart/${id}`, {
+        const res = await fetch(`${API_URL}/cart/${id}`, {
             method: "DELETE",
             credentials: "include",
             headers: {
@@ -335,7 +334,7 @@ export const PlaceOrder = async ({
     razorpay_signature,
 }) => {
     try {
-        const res = await fetch(`${BASE_URL}/order/place`, {
+        const res = await fetch(`${API_URL}/order/place`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -360,7 +359,7 @@ export const PlaceOrder = async ({
 
 export const CreateRazorpayOrder = async (amount) => {
     try {
-        const res = await fetch(`${BASE_URL}/payment/create-order`, {
+        const res = await fetch(`${API_URL}/payment/create-order`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -378,7 +377,7 @@ export const CreateRazorpayOrder = async (amount) => {
 
 export const GetMyOrders = async () => {
     try {
-        const res = await fetch(`${BASE_URL}/order/my`, {
+        const res = await fetch(`${API_URL}/order/my`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -394,7 +393,7 @@ export const GetMyOrders = async () => {
 
 export const GetSavedAddress = async () => {
     try {
-        const res = await fetch(`${BASE_URL}/order/saved-address`, {
+        const res = await fetch(`${API_URL}/order/saved-address`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -412,7 +411,7 @@ export const GetSavedAddress = async () => {
 
 export const CancelOrder = async (id, reason) => {
     try {
-        const res = await fetch(`${BASE_URL}/order/${id}/cancel`, {
+        const res = await fetch(`${API_URL}/order/${id}/cancel`, {
             method: "PUT",
             credentials: "include",
             headers: {
@@ -431,8 +430,8 @@ export const CancelOrder = async (id, reason) => {
 export const AdminGetOrders = async (status) => {
     try {
         const url = status
-            ? `${BASE_URL}/admin/orders?status=${status}`
-            : `${BASE_URL}/admin/orders`;
+            ? `${API_URL}/admin/orders?status=${status}`
+            : `${API_URL}/admin/orders`;
 
         const res = await fetch(url, {
             method: "GET",
@@ -450,7 +449,7 @@ export const AdminGetOrders = async (status) => {
 
 export const AdminUpdateOrderStatus = async (id, status, expectedDeliveryDate) => {
     try {
-        const res = await fetch(`${BASE_URL}/admin/orders/${id}/status`, {
+        const res = await fetch(`${API_URL}/admin/orders/${id}/status`, {
             method: "PUT",
             credentials: "include",
             headers: {
@@ -468,7 +467,7 @@ export const AdminUpdateOrderStatus = async (id, status, expectedDeliveryDate) =
 
 export const AdminGetDashboard = async () => {
     try {
-        const res = await fetch(`${BASE_URL}/admin/dashboard`, {
+        const res = await fetch(`${API_URL}/admin/dashboard`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -486,7 +485,7 @@ export const AdminGetDashboard = async () => {
 
 export const RequestDeliveryOtp = async ({ orderId, email }) => {
     try {
-        const res = await fetch(`${BASE_URL}/delivery-otp/request`, {
+        const res = await fetch(`${API_URL}/delivery-otp/request`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -502,7 +501,7 @@ export const RequestDeliveryOtp = async ({ orderId, email }) => {
 
 export const VerifyDeliveryOtp = async ({ orderId, email, otp }) => {
     try {
-        const res = await fetch(`${BASE_URL}/delivery-otp/verify`, {
+        const res = await fetch(`${API_URL}/delivery-otp/verify`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -518,7 +517,7 @@ export const VerifyDeliveryOtp = async ({ orderId, email, otp }) => {
 
 export const TrackVisit = async () => {
     try {
-        const res = await fetch(`${BASE_URL}/track-visit`, {
+        const res = await fetch(`${API_URL}/track-visit`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
