@@ -12,7 +12,7 @@ app.use(
     cors({
         origin: [
             "http://localhost:5173",
-            "https://king-fashion-alpha.vercel.app",
+            "https://king-fashion-alpha.vercel.app/",
         ]
     })
 );
