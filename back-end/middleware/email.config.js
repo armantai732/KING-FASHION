@@ -1,35 +1,39 @@
-import dotenv from "dotenv";
+import nodemailer from 'nodemailer'
+import dotenv from 'dotenv'
 import path from "path";
 import { fileURLToPath } from "url";
-import { Resend } from "resend";
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config({
-    path: path.join(__dirname, "../.env"),
+
+dotenv.config({path: path.join(__dirname, "../.env"),
+})
+
+
+export const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true, // use STARTTLS (upgrade connection to TLS after connecting)
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    },
 });
 
-if (!process.env.RESEND_API_KEY) {
-    throw new Error("RESEND_API_KEY is missing");
-}
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// const sendEmail = async () => {
+//     try {
+//         const info = await transporter.sendMail({
+//             from: `"King Fashion Viramgam" <${process.env.EMAIL_USER}>`, // sender address
+//             to: "taimunna722@gmail.com", // list of recipients
+//             subject: "Hello", // subject line
+//             text: "Hello world?", // plain text body
+//             html: "<b>Hello world</b>", // HTML body
+//         });
+//         console.log(info)
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
-export const sendEmail = async ({ to, subject, html, text }) => {
-    const { data, error } = await resend.emails.send({
-        from: "King Fashion <onboarding@resend.dev>",
-        to: [to],
-        subject,
-        html,
-        text,
-    });
-
-    if (error) {
-        console.error("Resend Email Error:", error);
-        throw new Error(error.message || "Email sending failed");
-    }
-
-    console.log("Email sent successfully:", data?.id);
-    return data;
-};
+// sendEmail()
