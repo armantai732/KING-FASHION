@@ -11,9 +11,12 @@ app.set("trust proxy", 1) // so req.ip reflects the real client IP behind a prox
 app.use(
     cors({
         origin: [
-            "http://localhost:5173",
             "https://king-fashion-hazel.vercel.app",
-        ]
+            "http://localhost:5173",
+        ],
+        credentials: true,
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+        allowedHeaders: ["Content-Type", "Authorization"],
     })
 );
 
